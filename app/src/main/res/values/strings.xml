@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">FootBall News</string>
-    <string name="API_KEY">20dc057c3848527bc49412bb9c5a8a938d772af78a6c09ba7f5ba520249ff1e4</string>
+    <string name="API_KEY">a</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

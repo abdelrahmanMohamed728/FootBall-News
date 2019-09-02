@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:id="@+id/fixtureHomeTextView"
+        android:gravity="left"
+        android:text="Ahly"/>
+    <TextView
+        android:layout_width="0dp"
+        android:id="@+id/fixtureScoreTextView"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textColor="#161803"
+        android:text="1 - 1"
+
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="0dp"
+        android:id="@+id/fixtureAwayTextView"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="right"
+        android:text="Zamalek"/>
+
+</LinearLayout>

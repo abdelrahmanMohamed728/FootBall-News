@@ -3,7 +3,7 @@ package com.example.abdo.footballnews.Adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import com.example.abdo.footballnews.Fragments.LeaguesFragment;
+import com.example.abdo.footballnews.Fragments.AllLeaguesFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdapter(FragmentManager fm) {
@@ -13,7 +13,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int i) {
         if (i==0)
-            return new LeaguesFragment();
+            return new AllLeaguesFragment();
 
         else
             return null;

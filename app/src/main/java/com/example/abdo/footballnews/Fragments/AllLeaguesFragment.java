@@ -1,6 +1,7 @@
 package com.example.abdo.footballnews.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -21,15 +23,16 @@ import com.android.volley.toolbox.Volley;
 import com.example.abdo.footballnews.Adapters.LeagueAdapter;
 import com.example.abdo.footballnews.Classes.League;
 import com.example.abdo.footballnews.R;
+import com.example.abdo.footballnews.LeagueActivity;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class LeaguesFragment extends Fragment
+public class AllLeaguesFragment extends Fragment
 {
-    public LeaguesFragment()
+    public AllLeaguesFragment()
     {
 
     }
@@ -43,10 +46,19 @@ public class LeaguesFragment extends Fragment
         View v= inflater.inflate(R.layout.fragment_leagues, container, false);
         listView = v.findViewById(R.id.LeagueListView);
         list = new ArrayList<>();
-           String API_KEY =  getResources().getString(R.string.API_KEY);;
+           String API_KEY =  getResources().getString(R.string.API_KEY);
            LoadData("https://allsportsapi.com/api/football/?met=Leagues&APIkey="+API_KEY);
-           adapter = new LeagueAdapter(getContext(),list);
-           listView.setAdapter(adapter);
+        adapter = new LeagueAdapter(getContext(),list);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String uid = list.get(position).getId();
+                Intent intent = new Intent(getActivity(),LeagueActivity.class);
+                intent.putExtra("id",uid);
+                startActivity(intent);
+            }
+        });
            text = v.findViewById(R.id.searchEditText);
            text.addTextChangedListener(new TextWatcher() {
                @Override
@@ -56,7 +68,8 @@ public class LeaguesFragment extends Fragment
 
                @Override
                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                   List<League> list2 = new ArrayList<>();
+                   final List<League> list2 = new ArrayList<>();
+
                    for (int i = 0;i<list.size();i++)
                    {
                        if (list.get(i).getName().contains(text.getText().toString().toLowerCase())||list.get(i).getCountry().contains(text.getText().toString().toLowerCase()))
@@ -66,6 +79,15 @@ public class LeaguesFragment extends Fragment
                    }
                    adapter = new LeagueAdapter(getContext(),list2);
                    listView.setAdapter(adapter);
+                   listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                       @Override
+                       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                           String uid = list2.get(position).getId();
+                           Intent intent = new Intent(getActivity(),LeagueActivity.class);
+                           intent.putExtra("id",uid);
+                           startActivity(intent);
+                       }
+                   });
                }
 
                @Override

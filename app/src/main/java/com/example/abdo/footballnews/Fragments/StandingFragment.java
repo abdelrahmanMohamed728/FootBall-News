@@ -1,12 +1,14 @@
 package com.example.abdo.footballnews.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -19,6 +21,7 @@ import com.example.abdo.footballnews.Adapters.StandingAdapter;
 import com.example.abdo.footballnews.Classes.Standing;
 import com.example.abdo.footballnews.LeagueActivity;
 import com.example.abdo.footballnews.R;
+import com.example.abdo.footballnews.TeamActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,6 +55,14 @@ public class StandingFragment extends Fragment {
         LoadData("https://allsportsapi.com/api/football/?&met=Standings&leagueId="+id+"&APIkey="+API_KEY);
         adapter = new StandingAdapter(getActivity(),list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(),TeamActivity.class);
+                intent.putExtra("id",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
         return v;
 
     }
